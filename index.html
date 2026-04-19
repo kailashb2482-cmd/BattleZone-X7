@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BattleZone X — India's Ultimate Esports Arena</title>
+    <link rel="icon" href="https://i.ibb.co/bjCxRVkx/file-0000000049887208a67f8ae24ef19cf1.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <style>
+        :root {
+            --primary-bg: #05010F;
+            --secondary-bg: #0B0820;
+            --text-primary: #E9E5FF;
+            --text-secondary: #9D8CFF;
+            --accent-color: #7C5CFF;
+            --accent-gradient-start: #5B3DF5;
+            --accent-gradient-end: #9D8CFF;
+            --border-color: #2A1E5C;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--primary-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 4px; }
+
+        .accent-text {
+            background: linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .app-name-highlight {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        /* ─── Navbar ─── */
+        .navbar-custom {
+            background: rgba(5, 1, 15, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.6rem 0;
+            z-index: 1050;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-custom.scrolled {
+            background: rgba(5, 1, 15, 0.95);
+            box-shadow: 0 4px 30px rgba(92, 61, 245, 0.1);
+        }
+
+        .nav-logo-frame {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #000;
+            border: 2px solid transparent;
+            background-image: linear-gradient(#000, #000), linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            box-shadow: 0 0 15px rgba(92, 61, 245, 0.5), 0 0 30px rgba(92, 61, 245, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .nav-logo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .navbar-brand-text {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary) !important;
+            margin-left: 0.6rem;
+            letter-spacing: -0.02em;
+        }
+
+        .navbar-custom .nav-link {
+            color: var(--text-secondary) !important;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .navbar-custom .nav-link:hover,
+        .navbar-custom .nav-link.active {
+            color: var(--text-primary) !important;
+        }
+
+        .navbar-custom .nav-link:hover::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 1rem;
+            right: 1rem;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            border-radius: 2px;
+        }
+
+        .dropdown-menu-custom {
+            background: rgba(11, 8, 32, 0.98);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 0.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 20px rgba(92,61,245,0.1);
+            min-width: 200px;
+        }
+
+        .dropdown-menu-custom .dropdown-item {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 0.55rem 1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu-custom .dropdown-item:hover {
+            background: rgba(124, 92, 255, 0.15);
+            color: var(--text-primary);
+        }
+
+        .dropdown-menu-custom .dropdown-item i {
+            margin-right: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .btn-download-nav {
+            background: linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            color: #fff !important;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 0.45rem 1.2rem;
+            border-radius: 50px;
+            border: none;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(92, 61, 245, 0.35);
+        }
+
+        .btn-download-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(92, 61, 245, 0.55);
+            color: #fff !important;
+        }
+
+        .navbar-toggler {
+            border: 1px solid var(--border-color);
+            padding: 0.35rem 0.6rem;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(157, 140, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* ─── Hero ─── */
+        .hero-section {
+            padding: 140px 0 80px;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(92, 61, 245, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(to top, var(--primary-bg), transparent);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(124, 92, 255, 0.1);
+            border: 1px solid rgba(124, 92, 255, 0.25);
+            border-radius: 50px;
+            padding: 0.35rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(124, 92, 255, 0.5); }
+            50% { box-shadow: 0 0 0 6px rgba(124, 92, 255, 0); }
+        }
+
+        .hero-title {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            color: var(--text-secondary);
+            max-width: 540px;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 0.85rem 2rem;
+            border-radius: 50px;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 30px rgba(92, 61, 245, 0.4);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(92, 61, 245, 0.6);
+            color: #fff;
+        }
+
+        .btn-secondary-custom {
+            background: rgba(124, 92, 255, 0.1);
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.75rem 1.8rem;
+            border-radius: 50px;
+            border: 1px solid rgba(124, 92, 255, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary-custom:hover {
+            background: rgba(124, 92, 255, 0.2);
+            border-color: rgba(124, 92, 255, 0.5);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .hero-logo-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-logo-frame {
+            width: 280px;
+            height: 280px;
+            border-radius: 40px;
+            background: #000;
+            border: 3px solid transparent;
+            background-image: linear-gradient(#000, #000), linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            box-shadow: 0 0 40px rgba(92, 61, 245, 0.4), 0 0 80px rgba(92, 61, 245, 0.15);
+            overflow: hidden;
+            animation: hero-float 4s ease-in-out infinite;
+            position: relative;
+        }
+
+        .hero-logo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-logo-glow {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border-radius: 40px;
+            background: radial-gradient(circle, rgba(92, 61, 245, 0.3), transparent 70%);
+            filter: blur(40px);
+            animation: hero-float 4s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes hero-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-16px); }
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .hero-stat h4 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0;
+        }
+
+        .hero-stat p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+
+        /* ─── Game Slider ─── */
+        .games-section {
+            background: var(--secondary-bg);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .games-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(92, 61, 245, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            max-width: 500px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            width: 220px;
+            backdrop-filter: blur(8px);
+        }
+
+        .game-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(92, 61, 245, 0.2);
+        }
+
+        .game-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .game-card h5 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .game-card p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        .swiper-slide { width: auto; }
+
+        /* ─── How It Works ─── */
+        .how-section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .step-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 50px rgba(92, 61, 245, 0.15);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            font-size: 5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, rgba(92, 61, 245, 0.08), rgba(157, 140, 255, 0.05));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .step-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+            font-size: 1.5rem;
+            color: #fff;
+            box-shadow: 0 6px 24px rgba(92, 61, 245, 0.35);
+        }
+
+        .step-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .step-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+            line-height: 1.7;
+        }
+
+        .step-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--border-color);
+            font-size: 1.5rem;
+        }
+
+        /* ─── Features ─── */
+        .features-section {
+            background: var(--secondary-bg);
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(8px);
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(92, 61, 245, 0.15);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            min-width: 56px;
+            border-radius: 14px;
+            background: rgba(124, 92, 255, 0.1);
+            border: 1px solid rgba(124, 92, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--accent-color);
+        }
+
+        .feature-card h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .feature-card p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+            line-height: 1.7;
+        }
+
+        /* ─── FAQ ─── */
+        .faq-section {
+            padding: 80px 0;
+        }
+
+        .accordion-custom .accordion-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 16px !important;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+        }
+
+        .accordion-custom .accordion-button {
+            background: transparent;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 1.1rem 1.5rem;
+            box-shadow: none;
+            border: none;
+        }
+
+        .accordion-custom .accordion-button::after {
+            filter: brightness(0) invert(0.6) sepia(1) hue-rotate(220deg);
+        }
+
+        .accordion-custom .accordion-button:not(.collapsed) {
+            background: rgba(124, 92, 255, 0.06);
+            color: var(--text-primary);
+        }
+
+        .accordion-custom .accordion-button:not(.collapsed)::after {
+            filter: brightness(0) invert(0.6) sepia(1) hue-rotate(220deg);
+        }
+
+        .accordion-custom .accordion-body {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            padding: 0 1.5rem 1.25rem;
+            line-height: 1.8;
+        }
+
+        /* ─── Footer ─── */
+        .footer-section {
+            border-top: 1px solid var(--border-color);
+            padding: 2.5rem 0;
+            text-align: center;
+        }
+
+        .footer-logo-frame {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #000;
+            border: 2px solid transparent;
+            background-image: linear-gradient(#000, #000), linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            box-shadow: 0 0 12px rgba(92, 61, 245, 0.4);
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-logo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .footer-section p {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .footer-section .copyright {
+            font-size: 0.72rem;
+            color: rgba(157, 140, 255, 0.5);
+        }
+
+        /* ─── Sticky Mobile Bar ─── */
+        .sticky-download-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(5, 1, 15, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
+            z-index: 1040;
+            display: none;
+        }
+
+        .sticky-download-bar .btn-sticky {
+            background: linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 0.85rem;
+            border-radius: 14px;
+            border: none;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            box-shadow: 0 4px 24px rgba(92, 61, 245, 0.45);
+            transition: all 0.3s ease;
+        }
+
+        .sticky-download-bar .btn-sticky:hover {
+            box-shadow: 0 6px 30px rgba(92, 61, 245, 0.65);
+            color: #fff;
+        }
+
+        @media (max-width: 767.98px) {
+            .sticky-download-bar { display: block; }
+            body { padding-bottom: 80px; }
+            .hero-logo-frame, .hero-logo-glow { width: 200px; height: 200px; border-radius: 30px; }
+            .hero-stats { gap: 1.5rem; }
+            .step-connector { display: none; }
+        }
+
+        /* ─── Modals ─── */
+        .modal-content-custom {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            color: var(--text-primary);
+        }
+
+        .modal-header-custom {
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.25rem 1.5rem;
+        }
+
+        .modal-header-custom .modal-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .modal-header-custom .btn-close {
+            filter: brightness(0) invert(0.7) sepia(1) hue-rotate(220deg);
+            opacity: 0.7;
+        }
+
+        .modal-body-custom {
+            padding: 1.5rem;
+            max-height: 65vh;
+            overflow-y: auto;
+        }
+
+        .modal-body-custom::-webkit-scrollbar { width: 4px; }
+        .modal-body-custom::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+
+        .modal-body-custom h5 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-body-custom h5:first-child { margin-top: 0; }
+
+        .modal-body-custom p, .modal-body-custom li {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .modal-body-custom ul {
+            padding-left: 1.2rem;
+        }
+
+        .modal-body-custom ul li { margin-bottom: 0.3rem; }
+
+        .modal-backdrop { backdrop-filter: blur(4px); }
+
+        /* ─── Animations ─── */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+
+        /* ─── Misc ─── */
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (min-width: 768px) {
+            .hero-section { padding: 160px 0 100px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<nav class="navbar navbar-expand-lg navbar-custom fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <div class="nav-logo-frame">
+                <img src="https://i.ibb.co/bjCxRVkx/file-0000000049887208a67f8ae24ef19cf1.png" alt="BattleZone X Logo">
+            </div>
+            <span class="navbar-brand-text">BattleZone X</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#how">How to Play</a></li>
+                <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
+                    <ul class="dropdown-menu dropdown-menu-custom">
+                        <li><a class="dropdown-item" href="#faq"><i class="bi bi-question-circle"></i>FAQ</a></li>
+                        <li><hr class="dropdown-divider" style="border-color: var(--border-color); margin: 0.3rem 0;"></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#privacyModal"><i class="bi bi-shield-check"></i>Privacy Policy</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#termsModal"><i class="bi bi-file-earmark-text"></i>Terms & Conditions</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#fairPlayModal"><i class="bi bi-trophy"></i>Fair Play Policy</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#refundModal"><i class="bi bi-arrow-counterclockwise"></i>Refund Policy</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item ms-lg-2">
+                    <a class="btn-download-nav" href="https://www.mediafire.com/file/gysdqqgutmp00fp/base.apk/file" target="_blank">
+                        <i class="bi bi-download"></i> Download App
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero-section" id="home">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 text-center text-lg-start">
+                <div class="fade-in-up">
+                    <div class="hero-badge">
+                        <span class="pulse-dot"></span>
+                        Now Live — Season 1
+                    </div>
+                </div>
+                <h1 class="hero-title fade-in-up delay-1">
+                    India's Ultimate<br><span class="accent-text">Esports Arena</span> is Here
+                </h1>
+                <p class="hero-subtitle fade-in-up delay-2">
+                    Compete in real-money tournaments for BGMI, Free Fire, PUBG New State and more. Join thousands of players winning daily on BattleZone X.
+                </p>
+                <div class="d-flex flex-column flex-sm-row gap-3 fade-in-up delay-3">
+                    <a href="https://www.mediafire.com/file/gysdqqgutmp00fp/base.apk/file" target="_blank" class="btn-primary-custom">
+                        <i class="bi bi-download"></i> Download & Start Playing
+                    </a>
+                    <a href="https://www.mediafire.com/file/gysdqqgutmp00fp/base.apk/file" target="_blank" class="btn-secondary-custom">
+                        <i class="bi bi-gift"></i> Get ₹10 FREE on Signup!
+                    </a>
+                </div>
+                <div class="hero-stats fade-in-up delay-4">
+                    <div class="hero-stat">
+                        <h4 class="accent-text">50K+</h4>
+                        <p>Active Players</p>
+                    </div>
+                    <div class="hero-stat">
+                        <h4 class="accent-text">₹5L+</h4>
+                        <p>Daily Winnings</p>
+                    </div>
+                    <div class="hero-stat">
+                        <h4 class="accent-text">100+</h4>
+                        <p>Daily Tournaments</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 mt-5 mt-lg-0">
+                <div class="hero-logo-container fade-in-up delay-3">
+                    <div class="hero-logo-glow"></div>
+                    <div class="hero-logo-frame">
+                        <img src="https://i.ibb.co/bjCxRVkx/file-0000000049887208a67f8ae24ef19cf1.png" alt="BattleZone X">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ GAMES SLIDER ═══════════ -->
+<section class="games-section" id="games">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-label fade-in-up"><i class="bi bi-joystick"></i> Popular Games</span>
+            <h2 class="section-title fade-in-up delay-1">Tournaments for Your Favorite Games</h2>
+            <p class="section-desc fade-in-up delay-2">Battle it out in competitive tournaments across India's most-played mobile titles.</p>
+        </div>
+        <div class="swiper gameSwiper fade-in-up delay-3">
+            <div class="swiper-wrapper" style="padding: 20px 0;">
+                <div class="swiper-slide">
+                    <div class="game-card">
+                        <img src="https://www.gamerji.com/img/games/BGMI.png" alt="BGMI">
+                        <h5>BGMI</h5>
+                        <p>Battle Royale</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="game-card">
+                        <img src="https://www.gamerji.com/img/games/FFM.png" alt="Free Fire MAX">
+                        <h5>Free Fire MAX</h5>
+                        <p>Battle Royale</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="game-card">
+                        <img src="https://www.gamerji.com/img/games/Pubg_New_State.png" alt="PUBG New State">
+                        <h5>New State</h5>
+                        <p>Battle Royale</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="game-card">
+                        <img src="https://www.gamerji.com/img/games/BGMI.png" alt="BGMI">
+                        <h5>BGMI</h5>
+                        <p>TDM Mode</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="game-card">
+                        <img src="https://www.gamerji.com/img/games/FFM.png" alt="Free Fire MAX">
+                        <h5>Free Fire</h5>
+                        <p>Clash Squad</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="game-card">
+                        <img src="https://www.gamerji.com/img/games/Pubg_New_State.png" alt="PUBG New State">
+                        <h5>New State</h5>
+                        <p>TDM Mode</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ HOW IT WORKS ═══════════ -->
+<section class="how-section" id="how">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label fade-in-up"><i class="bi bi-lightning-charge"></i> Simple Steps</span>
+            <h2 class="section-title fade-in-up delay-1">How It Works</h2>
+            <p class="section-desc fade-in-up delay-2">Start winning in just 3 easy steps — no complicated setup needed.</p>
+        </div>
+        <div class="row align-items-center justify-content-center g-4">
+            <div class="col-md-4 fade-in-up delay-1">
+                <div class="step-card">
+                    <span class="step-number">01</span>
+                    <div class="step-icon"><i class="bi bi-person-plus"></i></div>
+                    <h4>Download & Register</h4>
+                    <p>Download the BattleZone X app, sign up with your mobile number, and get ₹10 bonus instantly in your wallet.</p>
+                </div>
+            </div>
+            <div class="col-md-1 d-none d-md-flex justify-content-center">
+                <div class="step-connector"><i class="bi bi-chevron-right"></i></div>
+            </div>
+            <div class="col-md-4 fade-in-up delay-2">
+                <div class="step-card">
+                    <span class="step-number">02</span>
+                    <div class="step-icon"><i class="bi bi-trophy"></i></div>
+                    <h4>Join a Tournament</h4>
+                    <p>Browse from 100+ daily tournaments across your favorite games. Pick your entry fee, team size, and jump in.</p>
+                </div>
+            </div>
+            <div class="col-md-1 d-none d-md-flex justify-content-center">
+                <div class="step-connector"><i class="bi bi-chevron-right"></i></div>
+            </div>
+            <div class="col-md-4 fade-in-up delay-3">
+                <div class="step-card">
+                    <span class="step-number">03</span>
+                    <div class="step-icon"><i class="bi bi-wallet2"></i></div>
+                    <h4>Play, Win & Withdraw</h4>
+                    <p>Compete with real players, win real cash prizes, and withdraw your earnings instantly to your bank or UPI.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ FEATURES ═══════════ -->
+<section class="features-section" id="features">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label fade-in-up"><i class="bi bi-stars"></i> Why Choose Us</span>
+            <h2 class="section-title fade-in-up delay-1">Built for Champions</h2>
+            <p class="section-desc fade-in-up delay-2">Every feature is designed to give you a fair, seamless, and rewarding gaming experience.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 fade-in-up delay-1">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-shield-lock"></i></div>
+                    <div>
+                        <h4>100% Secure & Fair Play</h4>
+                        <p>Every match is monitored by our anti-cheat engine. No bots, no manipulation — only real players in real tournaments. Your data is encrypted with bank-grade security.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 fade-in-up delay-2">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-lightning-charge"></i></div>
+                    <div>
+                        <h4>Instant Withdrawals</h4>
+                        <p>Won a tournament? Your winnings hit your UPI or bank account within minutes. No pending queues, no hidden holds — just fast, reliable payouts, every single time.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 fade-in-up delay-3">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-people"></i></div>
+                    <div>
+                        <h4>Generous Referral Program</h4>
+                        <p>Invite your squad and earn ₹20 for every friend who joins. Your friends get ₹10 too. Unlimited referrals, unlimited earnings — it's a win-win for everyone.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 fade-in-up delay-4">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-headset"></i></div>
+                    <div>
+                        <h4>24/7 Customer Support</h4>
+                        <p>Stuck with an issue? Our dedicated support team is available round the clock via in-app chat and email. We typically respond within 5 minutes, so you never miss a match.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="faq-section" id="faq">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label fade-in-up"><i class="bi bi-chat-dots"></i> Got Questions?</span>
+            <h2 class="section-title fade-in-up delay-1">Frequently Asked Questions</h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 fade-in-up delay-2">
+                <div class="accordion accordion-custom" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true">
+                                Is BattleZone X legal in India?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, <span class="app-name-highlight">BattleZone X</span> operates fully within Indian law. Games of skill like BGMI and Free Fire tournaments are legal in most Indian states. We comply with all applicable regulations and do not operate in states where skill-based gaming is restricted (Assam, Odisha, Telangana, Sikkim, Nagaland, and Andhra Pradesh).
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                How do I withdraw my winnings?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Go to the Wallet section in the <span class="app-name-highlight">BattleZone X</span> app, tap "Withdraw," enter your UPI ID or bank details, and submit. Withdrawals are processed within 5–30 minutes. Minimum withdrawal amount is ₹50. There are zero withdrawal fees.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                Can I play tournaments for free?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Absolutely! <span class="app-name-highlight">BattleZone X</span> offers daily free-entry tournaments with real cash prizes. You also receive ₹10 on signup, which you can use as an entry fee for paid tournaments and win even bigger rewards.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                What if a tournament gets cancelled?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                If a tournament is cancelled by <span class="app-name-highlight">BattleZone X</span> for any reason (server issues, insufficient players, etc.), your full entry fee is refunded to your wallet within 10 minutes. No questions asked.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                How does the referral program work?
+                            </button>
+                        </h2>
+                        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Share your unique referral code from the <span class="app-name-highlight">BattleZone X</span> app. When your friend signs up using your code, you earn ₹20 and they receive ₹10 as a welcome bonus. There's no limit on how many friends you can refer!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<section class="footer-section">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
+            <div class="footer-logo-frame">
+                <img src="https://i.ibb.co/bjCxRVkx/file-0000000049887208a67f8ae24ef19cf1.png" alt="BattleZone X">
+            </div>
+            <span style="font-weight: 700; font-size: 1.1rem;">BattleZone X</span>
+        </div>
+        <p>BattleZone X is a skill-based esports platform. Participation in paid tournaments is restricted in certain states. Play responsibly.</p>
+        <p class="copyright">© 2025 BattleZone X. All rights reserved.</p>
+    </div>
+</section>
+
+<!-- ═══════════ STICKY MOBILE BAR ═══════════ -->
+<div class="sticky-download-bar">
+    <a href="https://www.mediafire.com/file/gysdqqgutmp00fp/base.apk/file" target="_blank" class="btn-sticky">
+        <i class="bi bi-download"></i> Download & Get ₹10 Bonus
+    </a>
+</div>
+
+<!-- ═══════════ PRIVACY POLICY MODAL ═══════════ -->
+<div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content modal-content-custom">
+            <div class="modal-header modal-header-custom">
+                <h5 class="modal-title" id="privacyModalLabel"><i class="bi bi-shield-check me-2"></i>Privacy Policy</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body modal-body-custom">
+                <h5>1. Introduction</h5>
+                <p>Welcome to <span class="app-name-highlight">BattleZone X</span>. We are committed to protecting the privacy and personal information of our users. This Privacy Policy explains how we collect, use, store, and share your information when you use our mobile application and related services.</p>
+                <h5>2. Information We Collect</h5>
+                <p>We may collect the following types of information:</p>
+                <ul>
+                    <li><strong>Personal Information:</strong> Name, email address, phone number, date of birth, and profile picture when you register an account on <span class="app-name-highlight">BattleZone X</span>.</li>
+                    <li><strong>Financial Information:</strong> UPI ID, bank account details, and transaction history necessary for processing withdrawals and deposits.</li>
+                    <li><strong>Device Information:</strong> Device type, operating system, unique device identifiers, IP address, and mobile network information.</li>
+                    <li><strong>Usage Data:</strong> App interaction data, tournament participation history, gameplay statistics, and in-app feature usage patterns.</li>
+                    <li><strong>Location Data:</strong> General location data to verify eligibility based on state-level gaming regulations.</li>
+                </ul>
+                <h5>3. How We Use Your Information</h5>
+                <p><span class="app-name-highlight">BattleZone X</span> uses your information for the following purposes:</p>
+                <ul>
+                    <li>To create and manage your account and provide customer support.</li>
+                    <li>To process financial transactions, including deposits and withdrawals securely.</li>
+                    <li>To match you with appropriate tournaments and maintain fair leaderboards.</li>
+                    <li>To verify your identity, age, and location for legal compliance.</li>
+                    <li>To detect and prevent fraud, cheating, or unauthorized access.</li>
+                    <li>To send notifications about tournaments, promotions, and account activity.</li>
+                    <li>To improve our platform through analytics and user behavior research.</li>
+                </ul>
+                <h5>4. Data Sharing</h5>
+                <p>We do not sell your personal information. <span class="app-name-highlight">BattleZone X</span> may share your data with:</p>
+                <ul>
+                    <li><strong>Payment Processors:</strong> To facilitate deposits and withdrawals.</li>
+                    <li><strong>Game Publishers:</strong> To verify match results and player statistics.</li>
+                    <li><strong>Legal Authorities:</strong> When required by law, regulation, or legal process.</li>
+                    <li><strong>Analytics Partners:</strong> Anonymized data for improving app performance and user experience.</li>
+                </ul>
+                <h5>5. Data Security</h5>
+                <p>We employ industry-standard encryption (AES-256 and TLS 1.3), secure server infrastructure, and regular security audits to protect your data. However, no system is completely secure, and we cannot guarantee absolute security.</p>
+                <h5>6. Data Retention</h5>
+                <p>We retain your personal data for as long as your account is active or as needed to provide our services. Financial records are retained for a minimum of 5 years as required by Indian tax regulations. You may request deletion of your account and associated data at any time.</p>
+                <h5>7. Your Rights</h5>
+                <ul>
+                    <li>Access and download a copy of your personal data.</li>
+                    <li>Request correction of inaccurate data.</li>
+                    <li>Request deletion of your account and data (subject to legal retention requirements).</li>
+                    <li>Opt out of promotional communications at any time.</li>
+                </ul>
+                <h5>8. Changes to This Policy</h5>
+                <p>We may update this Privacy Policy from time to time. We will notify you of any material changes through the app or via email. Continued use of <span class="app-name-highlight">BattleZone X</span> after changes constitutes acceptance of the updated policy.</p>
+                <h5>9. Contact Us</h5>
+                <p>For any privacy-related questions or concerns, please contact us at <strong>privacy@battlezonex.in</strong>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════ TERMS & CONDITIONS MODAL ═══════════ -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content modal-content-custom">
+            <div class="modal-header modal-header-custom">
+                <h5 class="modal-title" id="termsModalLabel"><i class="bi bi-file-earmark-text me-2"></i>Terms & Conditions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body modal-body-custom">
+                <h5>1. Acceptance of Terms</h5>
+                <p>By downloading, installing, or using the <span class="app-name-highlight">BattleZone X</span> application, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you must not use our services.</p>
+                <h5>2. Eligibility</h5>
+                <p>To use <span class="app-name-highlight">BattleZone X</span>, you must:</p>
+                <ul>
+                    <li>Be at least 18 years of age.</li>
+                    <li>Be a resident of India (excluding Assam, Odisha, Telangana, Sikkim, Nagaland, and Andhra Pradesh where skill-based gaming for real money is restricted).</li>
+                    <li>Provide accurate and complete registration information.</li>
+                    <li>Not have been previously suspended or banned from the platform.</li>
+                </ul>
+                <h5>3. Account Registration</h5>
+                <p>Each user may maintain only one account on <span class="app-name-highlight">BattleZone X</span>. Creating multiple accounts, using false information, or impersonating another person is strictly prohibited and may result in permanent suspension and forfeiture of wallet balance.</p>
+                <h5>4. Tournaments & Gameplay</h5>
+                <ul>
+                    <li>Tournament entry fees are non-refundable once a match has begun, except in cases where <span class="app-name-highlight">BattleZone X</span> cancels the tournament.</li>
+                    <li>Match results are verified using in-game screenshots and official match data. <span class="app-name-highlight">BattleZone X</span> reserves the right to disqualify any player suspected of manipulating results.</li>
+                    <li>Prize pools are predetermined and displayed before joining. Prize distribution is final and binding.</li>
+                    <li>Players must join the match lobby within the specified time. Late joiners will not receive refunds.</li>
+                </ul>
+                <h5>5. Wallet & Transactions</h5>
+                <ul>
+                    <li>Users may deposit funds using UPI, debit cards, or net banking through our secure payment gateway.</li>
+                    <li>Minimum withdrawal amount is ₹50. Withdrawals are processed within 30 minutes.</li>
+                    <li><span class="app-name-highlight">BattleZone X</span> is not a banking service and does not pay interest on wallet balances.</li>
+                    <li>Wallet balances unused for 12 consecutive months may be forfeited as per RBI guidelines.</li>
+                </ul>
+                <h5>6. Prohibited Conduct</h5>
+                <p>You agree NOT to:</p>
+                <ul>
+                    <li>Use cheats, hacks, mods, or any third-party software that gives an unfair advantage.</li>
+                    <li>Collude with other players (teaming) in solo or competitive tournaments.</li>
+                    <li>Create multiple accounts to exploit sign-up bonuses or referral rewards.</li>
+                    <li>Share your account credentials with any other person.</li>
+                    <li>Use the platform for money laundering or any illegal financial activity.</li>
+                </ul>
+                <h5>7. Termination</h5>
+                <p><span class="app-name-highlight">BattleZone X</span> reserves the right to suspend or terminate your account at its sole discretion, with or without notice, for any violation of these terms. Upon termination, any remaining wallet balance may be forfeited.</p>
+                <h5>8. Limitation of Liability</h5>
+                <p><span class="app-name-highlight">BattleZone X</span> is not liable for any indirect, incidental, or consequential damages arising from your use of the platform. Our total liability shall not exceed the amount held in your wallet at the time of the incident.</p>
+                <h5>9. Governing Law</h5>
+                <p>These terms are governed by the laws of India. Any disputes shall be subject to the exclusive jurisdiction of the courts in New Delhi, India.</p>
+                <h5>10. Contact</h5>
+                <p>For any questions regarding these terms, contact us at <strong>legal@battlezonex.in</strong>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════ FAIR PLAY POLICY MODAL ═══════════ -->
+<div class="modal fade" id="fairPlayModal" tabindex="-1" aria-labelledby="fairPlayModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content modal-content-custom">
+            <div class="modal-header modal-header-custom">
+                <h5 class="modal-title" id="fairPlayModalLabel"><i class="bi bi-trophy me-2"></i>Fair Play Policy</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body modal-body-custom">
+                <h5>1. Our Commitment</h5>
+                <p><span class="app-name-highlight">BattleZone X</span> is built on the foundation of fair competition. We are committed to ensuring that every player has an equal and honest opportunity to compete and win. Any form of cheating, exploitation, or manipulation will not be tolerated.</p>
+                <h5>2. Anti-Cheat Measures</h5>
+                <p>We employ a multi-layered anti-cheat system that includes:</p>
+                <ul>
+                    <li><strong>Automated Result Verification:</strong> Match results are cross-verified with official game APIs and server data.</li>
+                    <li><strong>Screenshot Analysis:</strong> AI-powered tools analyze submitted screenshots for inconsistencies or manipulation.</li>
+                    <li><strong>Behavioral Monitoring:</strong> Unusual gameplay patterns (impossible kill counts, abnormal survival times) are flagged for review.</li>
+                    <li><strong>Player Reporting:</strong> Users can report suspected cheaters directly from the tournament results page.</li>
+                </ul>
+                <h5>3. Prohibited Activities</h5>
+                <ul>
+                    <li><strong>Teaming / Collusion:</strong> Working with players outside your designated team to gain an advantage in solo or duo tournaments.</li>
+                    <li><strong>Hacking / Modding:</strong> Using unauthorized third-party apps, mods, or hacks that alter gameplay.</li>
+                    <li><strong>Result Manipulation:</strong> Submitting forged, edited, or incorrect screenshots to influence tournament outcomes.</li>
+                    <li><strong>Smurfing:</strong> Playing in lower-tier tournaments using alternate accounts to dominate less experienced players.</li>
+                    <li><strong>Account Sharing:</strong> Allowing another player to play on your behalf in a tournament.</li>
+                </ul>
+                <h5>4. Penalties</h5>
+                <p>Violations of the Fair Play Policy will result in:</p>
+                <ul>
+                    <li><strong>First Offense:</strong> Warning and disqualification from the current tournament. Entry fee forfeited.</li>
+                    <li><strong>Second Offense:</strong> 7-day account suspension and forfeiture of winnings from the affected tournament.</li>
+                    <li><strong>Third Offense:</strong> Permanent ban from <span class="app-name-highlight">BattleZone X</span> with full wallet balance forfeiture.</li>
+                </ul>
+                <h5>5. Dispute Resolution</h5>
+                <p>If you believe you were wrongly penalized, you may submit an appeal within 48 hours of the decision. Our Fair Play team will review all evidence and make a final determination within 72 hours. All decisions are final.</p>
+                <h5>6. Skill-Based Gaming</h5>
+                <p>All tournaments on <span class="app-name-highlight">BattleZone X</span> are skill-based. Outcomes depend primarily on the player's skill, strategy, and experience. The element of chance in battle royale games does not make these games "games of chance" under Indian law.</p>
+                <h5>7. Contact</h5>
+                <p>To report a violation or appeal a decision, contact <strong>fairplay@battlezonex.in</strong>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════ REFUND POLICY MODAL ═══════════ -->
+<div class="modal fade" id="refundModal" tabindex="-1" aria-labelledby="refundModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content modal-content-custom">
+            <div class="modal-header modal-header-custom">
+                <h5 class="modal-title" id="refundModalLabel"><i class="bi bi-arrow-counterclockwise me-2"></i>Refund & Cancellation Policy</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body modal-body-custom">
+                <h5>1. Tournament Entry Fee Refunds</h5>
+                <p><span class="app-name-highlight">BattleZone X</span> provides refunds on tournament entry fees under the following conditions:</p>
+                <ul>
+                    <li><strong>Tournament Cancellation:</strong> If <span class="app-name-highlight">BattleZone X</span> cancels a tournament due to insufficient players, server issues, or any other reason, the full entry fee is automatically refunded to your wallet within 10 minutes.</li>
+                    <li><strong>Match Not Started:</strong> If the match room is created but the game never begins (due to server maintenance or technical failure), a full refund is issued.</li>
+                    <li><strong>Technical Error on Our End:</strong> If a bug or glitch in the <span class="app-name-highlight">BattleZone X</span> app prevents you from joining a match you registered for, a full refund is provided.</li>
+                </ul>
+                <h5>2. Non-Refundable Situations</h5>
+                <p>Entry fees are NOT refundable in the following cases:</p>
+                <ul>
+                    <li>You were eliminated in the match normally (this is part of the competitive nature of the tournament).</li>
+                    <li>You joined the wrong tournament by mistake (please verify tournament details before joining).</li>
+                    <li>You failed to join the match lobby on time.</li>
+                    <li>You were disqualified for violating the Fair Play Policy.</li>
+                    <li>Your internet connection dropped or your device had issues during the match.</li>
+                </ul>
+                <h5>3. Wallet Deposits</h5>
+                <p>Deposits made to your <span class="app-name-highlight">BattleZone X</span> wallet can be refunded to your original payment source under the following conditions:</p>
+                <ul>
+                    <li>The deposit was made within the last 24 hours.</li>
+                    <li>The deposited amount has not been used for any tournament entry.</li>
+                    <li>Refund requests for unused deposits are subject to a 2% processing fee (minimum ₹5).</li>
+                </ul>
+                <h5>4. How to Request a Refund</h5>
+                <p>To request a refund:</p>
+                <ul>
+                    <li>Open the <span class="app-name-highlight">BattleZone X</span> app and go to <strong>Wallet → Transaction History</strong>.</li>
+                    <li>Tap on the transaction you want refunded.</li>
+                    <li>Select "Request Refund" and provide a reason.</li>
+                    <li>Our team will review and process the refund within 24–48 hours.</li>
+                </ul>
+                <h5>5. Cancellation Policy</h5>
+                <p>You may cancel a tournament registration up to 15 minutes before the scheduled start time. The entry fee will be fully refunded to your wallet. Cancellations within 15 minutes of the start time are not permitted.</p>
+                <h5>6. Bonus & Promotional Credits</h5>
+                <p>Signup bonuses, referral credits, and promotional wallet credits are non-refundable and cannot be withdrawn. They can only be used for tournament entry fees.</p>
+                <h5>7. Contact</h5>
+                <p>For refund inquiries, contact <strong>support@battlezonex.in</strong> with your registered phone number and transaction ID.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════ SCRIPTS ═══════════ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    // ─── Swiper ───
+    const gameSwiper = new Swiper('.gameSwiper', {
+        loop: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        spaceBetween: 20,
+        speed: 4000,
+        autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+        },
+        allowTouchMove: true,
+        freeMode: {
+            enabled: true,
+            sticky: false,
+            momentumBounce: true,
+            momentumRatio: 0.5
+        },
+        breakpoints: {
+            320: { spaceBetween: 14 },
+            768: { spaceBetween: 20 },
+            1024: { spaceBetween: 24 }
+        }
+    });
+
+    // ─── Navbar Scroll ───
+    const mainNav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+        mainNav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ─── Scroll Animations ───
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -5% 0px'
+    });
+
+    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+    // ─── Close dropdown on link click (mobile) ───
+    document.querySelectorAll('#navbarContent .nav-link:not(.dropdown-toggle)').forEach(link => {
+        link.addEventListener('click', () => {
+            const navbarCollapse = document.getElementById('navbarContent');
+            const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+            if (bsCollapse) bsCollapse.hide();
+        });
+    });
+
+    // ─── Smooth scroll for anchor links ───
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            const target = document.querySelector(targetId);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+</body>
+</html>
